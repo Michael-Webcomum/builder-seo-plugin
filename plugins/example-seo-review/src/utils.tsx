@@ -39,7 +39,7 @@ export const getSEOReviewModelTemplate = () => ({
   publicWritable: false,
   publicReadable: false,
   strictPrivateRead: true,
-  strictPrivateWrite: true,
+  strictPrivateWrite: false,
   showMetrics: false,
   showAbTests: false,
   showTargeting: false,
@@ -51,6 +51,7 @@ export const showReviewNotifications = (jobId: string) => {
   appState.snackBar.show(
     <div css={{ display: 'flex', alignItems: 'center' }}>Done!</div>,
     8000,
+
     <Button
       color="primary"
       css={{
@@ -72,6 +73,30 @@ export const showReviewNotifications = (jobId: string) => {
     </Button>
   );
 };
+
+// export const expandSeoReview = () => {
+//   appState.snackBar.show(
+//     <Button
+//       color="primary"
+//       css={{
+//         pointerEvents: 'auto',
+//         ...(appState.document.small && {
+//           width: 'calc(100vw - 1800px)',
+//           marginRight: 45,
+//           marginTop: 10,
+//           marginBottom: 10,
+//         }),
+//       }}
+//       variant="contained"
+//       onClick={async () => {
+//         appState.openDialog(<div>Hello I am where the Data goes</div>);
+//         appState.snackBar.open = false;
+//       }}
+//     >
+//       Expand SEO Results
+//     </Button>
+//   );
+// };
 
 export const getIframeHTMLContent = (): Promise<string> => {
   return appState.designerState.evaluateInFrame(() =>
