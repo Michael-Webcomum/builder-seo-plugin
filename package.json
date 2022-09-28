@@ -1,45 +1,137 @@
 {
-  "private": true,
-  "devDependencies": {
-    "@builder.io/block-publish": "^1.1.2",
-    "@typescript-eslint/parser": "^4.28.3",
-    "babel-preset-solid": "^1.0.1",
-    "lerna": "^3.20.2",
-    "tslib": "^2.2.0",
-    "typescript": "^4.0.0"
-  },
-  "license": "MIT",
+  "name": "@builder.io/plugin-example-seo-review",
+  "version": "0.0.-",
+  "description": "",
+  "keywords": [],
+  "main": "dist/plugin.system.js",
+  "unpkg": "dist/plugin.system.js",
+  "files": [
+    "dist"
+  ],
+  "author": "Steve Sewell <steve@builder.io>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/BuilderIO/builder"
+    "url": ""
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
   },
   "scripts": {
-    "prettier": "prettier",
-    "verify-git-not-dirty": "git diff --quiet || exit 1",
-    "_unlink": "lerna run _unlink --parallel",
-    "_install": "lerna run _install --stream",
-    "test": "lerna run test --stream",
-    "lerna": "lerna",
-    "install:packages": "npm run _install",
-    "bootstrap": "lerna bootstrap --force-local",
-    "reset": "npm run _install && npm run bootstrap && npm run _unlink",
-    "watch": "npm run start",
-    "develop": "npm run start",
-    "build": "lerna run build --stream --no-private --ignore @builder.io/plugin-loader --ignore @builder.io/plugin-shopify --ignore @builder.io/memsource-connector",
-    "release:patch": "npm run verify-git-not-dirty && npm run _install && npm run bootstrap && npm run build && lerna version patch --yes && lerna run build:unpkg:dist --no-private && ALLOW_PUBLISH=true lerna publish from-package --yes",
-    "release:minor": "npm run verify-git-not-dirty && npm run _install && npm run bootstrap && npm run build && lerna version minor --yes && lerna run build:unpkg:dist --no-private && ALLOW_PUBLISH=true lerna publish from-package --yes",
-    "release:prerelease:dev": "npm run build && lerna version prerelease --yes && lerna run build:unpkg:dist --no-private && ALLOW_PUBLISH=true lerna publish from-package --dist-tag dev --yes",
-    "release:dev": "npm run _install && npm run bootstrap && npm run release:prerelease:dev",
-    "prepublishOnly": "block-publish",
-    "ci:lint": "npx prettier@2.6.2 --check '**/*.{js,jsx,ts,tsx}'",
-    "lint:fix": "npx prettier@2.6.2 --write '**/*.{js,jsx,ts,tsx}'",
-    "update-npm-dependency": "zx ./scripts/update-npm-dependency.mjs",
-    "prepare": "husky install"
+    "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
+    "prebuild": "rimraf dist",
+    "build": "rollup -c rollup.config.ts",
+    "release:patch": "npm run build && npm version patch --no-git-tag-version && npm publish",
+    "release:dev": "npm run build && npm version prerelease --no-git-tag-version && npm publish --tag dev",
+    "start": "SERVE=true rollup -c rollup.config.ts -w",
+    "test": "jest --coverage",
+    "test:watch": "jest --coverage --watch",
+    "test:prod": "npm run lint && npm run test -- --no-cache"
+  },
+  "lint-staged": {
+    "{src,test}/**/*.ts": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testEnvironment": "node",
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 95,
+        "lines": 95,
+        "statements": 95
+      }
+    },
+    "collectCoverageFrom": [
+      "src/*.{js,ts}"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "devDependencies": {
+    "@builder.io/react": "^1.1.29",
+    "@commitlint/cli": "^7.1.2",
+    "@commitlint/config-conventional": "^7.1.2",
+    "@emotion/core": "^10.0.22",
+    "@emotion/styled": "^10.3.0",
+    "@material-ui/icons": "^1.1.1",
+    "@rollup/plugin-commonjs": "^19.0.1",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.2",
+    "@types/jest": "^23.3.2",
+    "@types/node": "^10.17.5",
+    "@types/react": "^16.9.11",
+    "@types/traverse": "^0.6.32",
+    "@types/uuid": "^8.3.4",
+    "colors": "^1.3.2",
+    "commitizen": "^3.0.0",
+    "coveralls": "^3.0.2",
+    "cross-env": "^5.2.0",
+    "cz-conventional-changelog": "^2.1.0",
+    "esbuild": "^0.12.15",
+    "husky": "^1.0.1",
+    "i": "^0.3.6",
+    "jest": "^23.6.0",
+    "jest-config": "^23.6.0",
+    "lint-staged": "^8.0.0",
+    "mobx": "^6.6.1",
+    "mobx-react": "^7.5.1",
+    "mobx-state-tree": "^5.1.5",
+    "prettier": "^1.14.3",
+    "prompt": "^1.0.0",
+    "replace-in-file": "^3.4.2",
+    "rimraf": "^2.6.2",
+    "rollup": "^2.53.2",
+    "rollup-plugin-dts": "^3.0.2",
+    "rollup-plugin-esbuild": "^4.5.0",
+    "rollup-plugin-node-globals": "^1.4.0",
+    "rollup-plugin-node-polyfills": "^0.2.1",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-serve": "^1.0.1",
+    "semantic-release": "^15.9.16",
+    "shelljs": "^0.8.3",
+    "travis-deploy-once": "^5.0.9",
+    "ts-jest": "^23.10.2",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-config-standard": "^8.0.1",
+    "typedoc": "^0.12.0",
+    "typescript": "^4.8.3"
   },
   "dependencies": {
-    "husky": "^7.0.4",
-    "pinst": "^3.0.0",
-    "prettier": "^2.6.2",
-    "zx": "^5.1.0"
+    "@builder.io/commerce-plugin-tools": "^0.3.0",
+    "@chakra-ui/react": "^2.3.4",
+    "@emotion/react": "^11.10.4",
+    "@mui/material": "^5.10.6",
+    "@nextui-org/react": "^1.0.0-beta.10",
+    "axios": "^0.27.2",
+    "framer-motion": "^7.3.6",
+    "lodash": "^4.17.21",
+    "traverse": "^0.6.6",
+    "uuid": "^8.3.2"
   }
 }
