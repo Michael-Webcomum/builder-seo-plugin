@@ -7,6 +7,7 @@ import {
   registerContentAction,
   showReviewNotifications,
   fastClone,
+  expandSeoReview,
   // expandReviewNotifications,
 } from './utils';
 import { formatSeoData } from './formatSeoData';
@@ -84,16 +85,12 @@ registerPlugin(
           data: seoAPIDataFormatted,
         });
 
-        // const expandSeoReview = await appState.globalState.openDialog(SeoModal, {
-        //   name: `Expanded SEO Results ${content.id}`,
-        //   meta: {
-        //     createdBy: pkg.name,
-        //   },
+        // const dataForModal = await appState.globalState.openDialog(seoReviewModel, {
         //   data: seoAPIDataFormatted,
         // });
 
         showReviewNotifications(seoReviewEntry.id);
-        // expandSeoReview(expandSeoReview.id);
+        expandSeoReview();
       },
     });
 

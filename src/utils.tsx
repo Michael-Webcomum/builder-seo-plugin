@@ -1,10 +1,10 @@
 import React from 'react';
-import '@emotion/core';
+import { css } from '@emotion/core';
 import appState, { globalState } from '@builder.io/app-context';
 import { Builder } from '@builder.io/react';
 import { Button, Typography, Modal } from '@material-ui/core';
-import Box from '@mui/material/Box';
-import SeoModal from './components/SeoModal';
+import { prepareSeoData } from './prepareSeoData';
+import { formatSeoData } from './formatSeoData';
 
 export const registerContentAction = (contentAction: {
   label: string;
@@ -107,81 +107,73 @@ export const showReviewNotifications = (jobId: string) => {
   );
 };
 
-// export const showSeoModal = () => {
-//   const ReviewModal = appState.globalState.openDialog(<SeoModal></SeoModal>);
-
-//   return ReviewModal;
-// };
-
-// export const open = () => {
-//   appState.openDialog(
-//     <div id="modal" css={{ display: 'flex', alignItems: 'center' }}>
-//       THIS WORKS?!
-//     </div>
-//   );
-// };
-
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+// let seoAPIDataFormatted: any = prepareSeoData();
+// seoAPIDataFormatted = formatSeoData(seoAPIDataFormatted);
 
 export const expandSeoReview = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  // const dataForModal = appState.globalState.openDialog(getSEOReviewModel, {
+  //   data: seoAPIDataFormatted,
+  // });
 
-  appState.snackBar.show(
-    <div css={{ display: 'flex', alignItems: 'center', margin: 'auto', backgroundColor: 'red' }}>
-      Done!
-    </div>,
-    8000,
-
-    <div id="container">
-      <Button
-        id="button"
-        color="primary"
-        css={{
-          pointerEvents: 'auto',
-          ...(appState.document.small && {
-            width: 'calc(100vw - 90px)',
-            marginRight: 45,
-            marginTop: 10,
-            marginBottom: 10,
-          }),
-        }}
-        variant="contained"
-        onClick={async () => {
-          appState.openDialog(
-            // seoModal()
-            <Modal
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  Title text in the MODAL!
-                </Typography>
-                <Typography id="modal-modal-description" style={{ marginTop: 2 }}>
-                  Description of the MODAL (this is where the data is gonna go ;))
-                </Typography>
-              </Box>
-            </Modal>
-          );
+  appState.globalState.openDialog(
+    <div
+      // onClick={() => dataForModal()}
+      style={{
+        position: 'fixed',
+        zIndex: 1,
+        top: '50%',
+        left: '50%',
+        overflow: 'auto',
+        transform: 'translate(-50%, -50%)',
+        width: 600,
+        border: '2px solid #000',
+        borderRadius: '25px',
+        boxShadow: '24',
+        padding: 10,
+      }}
+    >
+      <div
+        style={{
+          margin: 'auto',
+          width: '50%',
+          padding: '8px',
+          paddingBottom: '10px',
+          textAlign: 'center',
         }}
       >
-        Open Modal
-      </Button>
-    </div>
+        TITLE FOR MODAL
+        <div
+          style={{
+            display: 'flex',
+          }}
+        >
+          <div
+            style={{
+              flex: '50%',
+            }}
+          >
+            Data Keys?
+            <br />
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, vero. Facere minus
+            accusamus praesentium nemo commodi voluptatibus. Nostrum rem ipsa amet suscipit.
+            Praesentium voluptatibus omnis deserunt, animi quod modi temporibus.
+          </div>
+          <div
+            style={{
+              flex: '50%',
+            }}
+          >
+            Data Results?
+            <br />
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, vero. Facere minus
+            accusamus praesentium nemo commodi voluptatibus. Nostrum rem ipsa amet suscipit.
+            Praesentium voluptatibus omnis deserunt, animi quod modi temporibus.
+          </div>
+        </div>
+      </div>
+    </div>,
+    console.log('I am a working modal'),
+    10000
   );
 };
 
