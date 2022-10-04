@@ -13,6 +13,7 @@ import {
 import { formatSeoData } from './formatSeoData';
 import { prepareSeoData } from './prepareSeoData';
 import SeoModal from './components/SeoModal';
+import { formatWithOptions } from 'util';
 
 // Creates a modal popup with data --- NOT SURE HOW THIS WORKS YET
 // interface ApplicationContext {
@@ -90,7 +91,8 @@ registerPlugin(
         // });
 
         showReviewNotifications(seoReviewEntry.id);
-        expandSeoReview();
+        console.log(expandSeoReview);
+        expandSeoReview(formatSeoData);
       },
     });
 
