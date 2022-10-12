@@ -65,7 +65,6 @@ registerPlugin(
 
         // Data is prepared to have the same structure as Builder.io expects
         let seoAPIDataFormatted: any = await prepareSeoData();
-        seoAPIDataFormatted = formatSeoData(seoAPIDataFormatted);
 
         // adds the result to the latest draft
         await appState.updateLatestDraft({
@@ -92,7 +91,7 @@ registerPlugin(
 
         showReviewNotifications(seoReviewEntry.id);
         console.log(expandSeoReview);
-        expandSeoReview(formatSeoData);
+        expandSeoReview(seoAPIDataFormatted);
       },
     });
 
