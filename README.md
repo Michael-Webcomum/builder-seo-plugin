@@ -1,5 +1,6 @@
 # Builder.io SEO Review Plugin
-Demo for extracting and processing html content of iframed preview areas
+
+Plugin for extracting and processing html content of iframed preview areas within Builder.io
 
 ## Installation
 
@@ -16,5 +17,4 @@ Now the plugin will be running on `http://localhost:1268/plugin.system.js`
 http://localhost:1268/plugin.system.js?pluginId=@builder.io/plugin-example-seo-review
 ```
 
-*** Notice the pluginId param in the path above, it's necessary to save the plugin settings.
-
+\*\*\* Notice the pluginId param in the path above, it's necessary to save the plugin settings.

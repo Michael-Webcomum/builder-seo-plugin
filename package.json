@@ -1,14 +1,14 @@
 {
-  "name": "@builder.io/seo-review-plugin",
+  "name": "@michael44/seo-review-plugin",
   "version": "0.0.1",
-  "description": "",
+  "description": "SEO Review Plugin for Builder.io",
   "keywords": [],
   "main": "dist/plugin.system.js",
   "unpkg": "dist/plugin.system.js",
   "files": [
     "dist"
   ],
-  "author": "Steve Sewell <steve@builder.io>",
+  "author": "Michael Dixon <michael@webcomum.com>",
   "repository": {
     "type": "git",
     "url": ""
