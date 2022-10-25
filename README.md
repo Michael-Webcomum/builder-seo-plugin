@@ -2,6 +2,10 @@
 
 Plugin for extracting and processing html content of iframed preview areas within Builder.io
 
+The plugin sends the extracted iframe content, sends it to the SEO Review Tools API (https://api.seoreviewtools.com/) for real-time analysis based on the users' keyword input.
+
+The plugin then displays all of the data in a modal with organized data.
+
 ## Installation
 
 - clone this repo

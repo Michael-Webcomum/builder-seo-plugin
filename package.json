@@ -1,8 +1,8 @@
 {
-  "name": "@michael44/seo-review-plugin",
-  "version": "0.0.1",
+  "name": "@builder.io/seo-review-plugin",
+  "version": "0.0.2",
   "description": "SEO Review Plugin for Builder.io",
-  "keywords": [],
+  "keywords": ["SEO", "Search Engine Optimization"],
   "main": "dist/plugin.system.js",
   "unpkg": "dist/plugin.system.js",
   "files": [

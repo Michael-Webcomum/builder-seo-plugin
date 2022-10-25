@@ -48,6 +48,7 @@ export const getSEOReviewModelTemplate = () => ({
   hideFromUI: false,
 });
 
+//Displays popup confirming the review has been completed and provides path to review details.
 export const showReviewNotifications = (jobId: string) => {
   appState.snackBar.show(
     <div css={{ display: 'flex', alignItems: 'center' }}>Done!</div>,
@@ -74,6 +75,7 @@ export const showReviewNotifications = (jobId: string) => {
   );
 };
 
+//Modal/Popup function with visualised data
 export const expandSeoReview = (dataToFormat: any) => {
   const data = formatSeoData(dataToFormat);
 

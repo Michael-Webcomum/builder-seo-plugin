@@ -8,19 +8,8 @@ import {
   showReviewNotifications,
   fastClone,
   expandSeoReview,
-  // expandReviewNotifications,
 } from './utils';
-import { formatSeoData } from './formatSeoData';
 import { prepareSeoData } from './prepareSeoData';
-import SeoModal from './components/SeoModal';
-import { formatWithOptions } from 'util';
-
-// Creates a modal popup with data --- NOT SURE HOW THIS WORKS YET
-// interface ApplicationContext {
-//   globalState: {
-//     openDialog(element: JSX.Element): Promise<() => void>;
-//   };
-// }
 
 /**
  * Instruct builder to require few settings before running the plugin code, for example when an apiKey for the service is required
@@ -85,12 +74,9 @@ registerPlugin(
           data: seoAPIDataFormatted,
         });
 
-        // const dataForModal = await appState.globalState.openDialog(seoReviewModel, {
-        //   data: seoAPIDataFormatted,
-        // });
-
+        //Display notification of review completion
         showReviewNotifications(seoReviewEntry.id);
-        console.log(expandSeoReview);
+        //Displays modal/popup with detailed and visualised data
         expandSeoReview(seoAPIDataFormatted);
       },
     });
