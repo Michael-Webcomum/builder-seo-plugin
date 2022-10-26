@@ -1,6 +1,6 @@
 # Builder.io SEO Review Plugin
 
-Plugin for extracting and processing html content of iframed preview areas within Builder.io
+Plugin for extracting and processing html content of iframed preview areas within Builder.io platform.
 
 The plugin sends the extracted iframe content, sends it to the SEO Review Tools API (https://api.seoreviewtools.com/) for real-time analysis based on the users' keyword input.
 
