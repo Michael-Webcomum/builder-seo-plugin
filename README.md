@@ -8,8 +8,6 @@ The plugin then displays all of the data in a modal with organized data.
 
 ## Installation
 
-- clone this repo
-- `cd plugins/example-seo-review`
 - `npm install`
 - `npm run start`
 
