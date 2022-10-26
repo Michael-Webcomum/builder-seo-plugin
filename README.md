@@ -4,7 +4,7 @@ Plugin for extracting and processing html content of iframed preview areas withi
 
 The plugin sends the extracted iframe content, sends it to the SEO Review Tools API (https://api.seoreviewtools.com/) for real-time analysis based on the users' keyword input.
 
-The plugin then displays all of the data in a modal with organized data.
+The plugin then displays the SEO data organised and visually clear.
 
 ## Installation
 
