@@ -16,10 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use node version 16
+      - name: Use node version 12
         uses: actions/setup-node@v2
         with:
-          node-version: 16
+          node-version: 12
 
       - run: npm run ci:lint
 
@@ -28,7 +28,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16]
+        node-version: [12]
         package: ['core', 'webcomponents', 'react', 'widgets']
 
     steps:
@@ -79,26 +79,26 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16.x'
-          cache: 'yarn'
-          cache-dependency-path: ./packages/sdks/yarn.lock
+          cache: 'npm'
+          cache-dependency-path: ./packages/sdks/npm.lock
 
       - name: Install dependencies
-        run: yarn
+        run: npm
 
       - name: Run prettier
-        run: yarn ci:lint
+        run: npm ci:lint
 
       - name: Build
-        run: yarn ci:build
+        run: npm ci:build
 
       - name: Run tests
-        run: yarn ci:test
+        run: npm ci:test
 
       - name: Install browsers for Playwright
-        run: yarn ci:e2e-prep
+        run: npm ci:e2e-prep
 
       - name: Build E2E tests
-        run: yarn ci:e2e-build
+        run: npm ci:e2e-build
 
       - name: Run E2E tests
-        run: yarn ci:e2e
+        run: npm ci:e2e
