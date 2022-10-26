@@ -21,7 +21,7 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "lint": "eslint --ext js,ts,tsx src",
+    "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "prebuild": "rimraf dist",
     "build": "rollup -c rollup.config.ts",
     "release:patch": "npm run build && npm version patch --no-git-tag-version && npm publish",
