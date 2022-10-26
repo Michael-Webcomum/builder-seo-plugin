@@ -74,7 +74,6 @@ export const showReviewNotifications = (jobId: string) => {
     </Button>
   );
 };
-
 //Modal/Popup function with visualised data
 export const expandSeoReview = (dataToFormat: any) => {
   const data = formatSeoData(dataToFormat);

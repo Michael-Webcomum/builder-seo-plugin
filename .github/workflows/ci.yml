@@ -79,26 +79,26 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16.x'
-          cache: 'npm'
-          cache-dependency-path: ./packages/sdks/npm.lock
+          cache: 'yarn'
+          cache-dependency-path: ./packages/sdks/yarn.lock
 
       - name: Install dependencies
-        run: npm
+        run: yarn
 
       - name: Run prettier
-        run: npm ci:lint
+        run: yarn ci:lint
 
       - name: Build
         run: npm ci:build
 
       - name: Run tests
-        run: npm ci:test
+        run: yarn ci:test
 
       - name: Install browsers for Playwright
-        run: npm ci:e2e-prep
+        run: yarn ci:e2e-prep
 
       - name: Build E2E tests
-        run: npm ci:e2e-build
+        run: yarn ci:e2e-build
 
       - name: Run E2E tests
-        run: npm ci:e2e
+        run: yarn ci:e2e
